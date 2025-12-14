@@ -1,7 +1,13 @@
 import { useState } from "react";
-import { Column } from "../ColumnStructure/ColumnStructure";
+import { Column } from "../ColumnClass/ColumnClass";
 
-export function ColumnView({ column, onChange }: { column: Column; onChange: () => void }) {
+export function ColumnView({
+  column,
+  onChange,
+}: {
+  column: Column;
+  onChange: () => void;
+}) {
   const [taskText, setTaskText] = useState("");
 
   const addTask = () => {
@@ -15,11 +21,15 @@ export function ColumnView({ column, onChange }: { column: Column; onChange: () 
       <input
         type="text"
         defaultValue={column.title}
+        readOnly
         className="border p-1 rounded"
       />
 
-      {column.tasks.map(task => (
-        <div key={task.id} className="flex items-center gap-2 bg-white p-2 rounded">
+      {column.tasks.map((task) => (
+        <div
+          key={task.id}
+          className="flex items-center gap-2 bg-white p-2 rounded"
+        >
           <input
             type="checkbox"
             checked={task.done}
@@ -44,7 +54,7 @@ export function ColumnView({ column, onChange }: { column: Column; onChange: () 
       <div className="flex gap-2 mt-2">
         <input
           value={taskText}
-          onChange={e => setTaskText(e.target.value)}
+          onChange={(e) => setTaskText(e.target.value)}
           className="border p-1 rounded flex-1"
         />
         <button

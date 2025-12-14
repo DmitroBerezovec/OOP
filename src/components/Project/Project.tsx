@@ -1,10 +1,10 @@
-import { BaseComponent } from "../BaseComponent/BaseComponent";
-import { Column } from "../ColumnStructure/ColumnStructure";
+import { BaseClass } from "../BaseClass/BaseClass";
+import { Column } from "../ColumnClass/ColumnClass";
 
-export class Project extends BaseComponent {
+export class Project extends BaseClass {
   columns: Column[] = [];
 
-  addColumn(title: string = "Колонка") {
+  addColumn(title: string ) {
     this.columns.push(new Column(title));
   }
 

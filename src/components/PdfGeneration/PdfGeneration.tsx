@@ -1,14 +1,3 @@
-// const PdfGeneration = () => {
-//   return (
-//     <div className="fixed bottom-[20px] left-0 right-0 h-[60px] bg-gray-800 text-white flex items-center px-4 z-50">
-//       <button className=" bg-purple-500 w-full">
-//         generate and download report in pdf
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default PdfGeneration;
 import jsPDF from "jspdf";
 import type { ReportGenerator } from "../ReportGenerator/ReportGenerator";
 import { Project } from "../Project/Project";
@@ -18,19 +7,19 @@ export class PDFReportGenerator implements ReportGenerator {
   generate(project: Project): void {
     const doc = new jsPDF();
 
-    doc.setFont("dejavu-sans-webfont");
+    doc.setFont("dejavu-sans-webfont");// стиль для кирилиці
 
     doc.setFontSize(18);
     doc.text("Звіт по проекту", 20, 20);
 
     let y = 40;
 
-    project.columns.forEach((col) => {
+    project.columns.forEach((col) => {//перебір всіх колонок
       doc.setFontSize(14);
       doc.text(`Колонка: ${col.title}`, 20, y);
       y += 10;
 
-      col.tasks.forEach((task) => {
+      col.tasks.forEach((task) => {//перебір всіх задач та їх оформлення
         const line = task.done
           ? `[+] ${task.text} — виконано: ${task.timestamp}`
           : `[-] ${task.text} — не виконано`;
@@ -43,6 +32,6 @@ export class PDFReportGenerator implements ReportGenerator {
       y += 10;
     });
 
-    doc.save("project-report.pdf");
+    doc.save("Звіт.pdf");
   }
 }
